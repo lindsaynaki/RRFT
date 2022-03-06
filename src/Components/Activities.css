@@ -32,7 +32,7 @@ color: blue;
 }
 .add-activity-btn {
   border-radius: 5px;
-  background-color: lightgreen;
+  background-color: deepskyblue;
   padding: 10px;
   margin: 5vh;
   height: 2vh;
@@ -41,7 +41,7 @@ color: blue;
   text-underline: none;
 }
 .add-activity-btn:hover {
-  background-color: palegreen;
+  background-color: paleturquoise;
 }
 .table-wrapper {
   display: flex;

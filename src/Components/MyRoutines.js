@@ -17,7 +17,7 @@ const MyRoutines = ({ token, user, routines }) => {
 			{filteredRoutines.map((routine) => {
 				const { name, goal, activities } = routine;
 				return (<>
-					<div>
+					<div className="eachRoutine">
 						<h3>Routine</h3>
 						<p>Name: {name}</p>
 						<p>Goal: {goal}</p>

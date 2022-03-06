@@ -98,3 +98,7 @@ input {
   cursor: pointer;
   background-color: lightskyblue;
 }
+
+svg:hover {
+  color: red
+}
