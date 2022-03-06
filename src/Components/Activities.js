@@ -4,24 +4,7 @@ import { Link } from 'react-router-dom';
 import { deleteActivity } from '../api';
 import "./Activities.css"
 
-
-
 const Activities = ({ token, activities, setActivities }) => {
-
-    const handleActivities = async() => {
-        try{
-            const fetchedActivities = await fetchActivities()
-            setActivities(fetchedActivities)
-        } catch(error) {
-            console.error(error)
-        }
-    }
-
-    console.log('activities: ', activities)
-    
-    useEffect(() => {
-        handleActivities()
-    }, [token])
 
     const handleDelete = async(activityIdToDelete, token) => {
         try{ 
@@ -39,17 +22,26 @@ const Activities = ({ token, activities, setActivities }) => {
     
     return<>
         <div className='activities'>
-            <h1>Activities</h1>
-            {token && <Link to='/activities/add'>Add Activity</Link>}
+            <h1 className="activities-title">Activities</h1>
+            {token && <Link to='/activities/add' className="add-activity-btn">Add Activity</Link>}
+            <div className="table-wrapper">
+                <table className="activities-table">
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th></th>
+                    </tr>
             {activities.map((activity) => {
                 const { name, description} = activity
                 return (
-                    <div className='eachActivity' key={activity.id}>
-                        <p>name: {name}</p>
-                        <p>descripiton: {description}</p>
-                    </div>
+                    <tr key={activity.id}>
+                        <td>name: {name}</td>
+                        <td>descripiton: {description}</td>
+                    </tr>
                 )
             })}
+              </table>
+            </div>
         </div>
     </>
 }

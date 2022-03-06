@@ -27,3 +27,53 @@ color: blue;
   background-color: rgba(236, 100, 100, 0.336);
   border: 1px solid black;
 }
+.activities-title {
+  margin: 3vh;
+}
+.add-activity-btn {
+  border-radius: 5px;
+  background-color: lightgreen;
+  padding: 10px;
+  margin: 5vh;
+  height: 2vh;
+  border: 1px solid black;
+  color: black;
+  text-underline: none;
+}
+.add-activity-btn:hover {
+  background-color: palegreen;
+}
+.table-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.activities-table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 75vw;
+  margin-top: 5vh;
+}
+
+.activities-table td, .activities-table th {
+  border: 1px solid black;
+  padding: 8px;
+}
+
+.activities-table tr:nth-child(even){background-color: #f2f2f2;}
+
+.activities-table th {
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  text-align: left;
+}
+.submit-activity-btn {
+  background-color: deepskyblue;
+  border-radius: 5px;
+  width: 25vw;
+  margin: 10px;
+  padding: 10px;
+}
+.submit-activity-btn:hover {
+  cursor: pointer;
+  background-color: lightskyblue;
+}

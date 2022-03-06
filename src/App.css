@@ -8,6 +8,8 @@
 
 body {
  height: 100vh;
+    /*background: rgb(2,0,36);
+    background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(65,65,255,1) 0%, rgba(0,212,255,1) 100%);*/
 }
 
 .app {
@@ -21,7 +23,7 @@ header {
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: black;
-  background-color: rgba(111, 143, 223, 0.281);
+  /* //background-color: rgba(111, 143, 223, 0.281); */
 }
 
 nav {
@@ -38,5 +40,33 @@ nav {
 
 .logout-btn {
   font-size: 20px;
-  background-color: none;
+  background: transparent;
+  border: 1px solid black;
+  padding: 1.5vh;
+  border-radius: 5px;
+}
+.logout-btn:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+.main-title {
+  padding: 2vw;
+  text-align: left;
+  justify-content: left;
+  top: 50%;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 5vh;
+  text-decoration: none;
+  background: -webkit-linear-gradient(deepskyblue, mediumpurple);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navbar-item {
+  color: black;
+  text-decoration: none;
+}
+.navbar-item:hover {
+  color:deepskyblue;
 }

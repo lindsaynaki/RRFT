@@ -1,48 +1,44 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { addRoutine  } from '../api'
 import { useNavigate } from 'react-router-dom';
+import './Add.css'
 
-const AddRoutine = ({token, routines, setRoutines, routineName, setRoutineName, goal, setGoal, isPublic, setIsPublic, handleRoutines}) => {
-    const navigate = useNavigate();
+const AddRoutine = ({token, handleRoutines}) => {
+	const blankRoutine = {
+		isPublic: false,
+		name: "",
+		goal: ""
+	}
+	const [routineToAdd, setRoutineToAdd] = useState(blankRoutine);
+	const navigate = useNavigate();
+    console.log(routineToAdd);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
             try {
-                console.log('button was clicked')
-                const newRoutine = await addRoutine(token, isPublic, routineName, goal)
-                console.log('new routine: ', newRoutine)
-                console.log('routines: ', routines)
-                // setRoutines([...routines, newRoutine])
-                //handle routines
+                await addRoutine(token, routineToAdd);
+				console.log('added routine: ', addRoutine)
                 await handleRoutines();
                 navigate('/routines')
             } catch(error) {
                 console.dir(error)
-                // console.log(error.response.data.message)
             }
     }
 
-    useEffect(() => {
-        setRoutineName('')
-        setGoal('')
-        setIsPublic(false)
-    }, [])
-
     return (
-        <div className="login-signup">
+        <div className="add-routine-container">
             <h1>Add Routine</h1>
-        <form onSubmit={handleSubmit} className="login-signup">
-            <input className="login-signup-input" value={routineName} placeholder="name" onChange={(event) => { setRoutineName(event.target.value) }} required />
-            <input className="login-signup-input" placeholder="goal" value={goal} onChange={(event) => { setGoal(event.target.value) }} required />
-            <label htmlFor="public" className="public">Public?</label>
-            <select>
-                value={isPublic}
-                onChange={(event) => { setIsPublic(event.target.value)}}
-                <option value={true}>Yes</option>
-                <option value={false}>No</option>
-            </select>
-            <button className="login-signup-btn">Add Routine</button>
-        </form>
+					<form onSubmit={handleSubmit} className="add-routine-container">
+						<input className="login-signup-input" value={routineToAdd.name} placeholder="name" onChange={(event) => { setRoutineToAdd({...routineToAdd, name: event.target.value}) }} required />
+						<input className="login-signup-input" placeholder="goal" value={routineToAdd.goal} onChange={(event) => { setRoutineToAdd({...routineToAdd, goal: event.target.value}) }} required />
+						<label htmlFor="public" className="public">Public?</label>
+						<select value={routineToAdd.isPublic}
+							onChange={(event) => { setRoutineToAdd({...routineToAdd, isPublic: (event.target.value === "true" ? true : false)}) }}>
+							<option value={true}>Yes</option>
+							<option value={false}>No</option>
+						</select>
+						<button className="submit-routine-btn">Add Routine</button>
+					</form>
         </div>
     )
 }

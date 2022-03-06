@@ -22,7 +22,7 @@ const Register = ({token, setToken}) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit} className="login-signup">
+            <form onSubmit={handleSubmit} className="routines">
                 <h2>Register</h2>
                 {errMsg && <p className="error">{errMsg}</p>}
                 <input className="login-signup-input" value={username} placeholder="username" onChange={(event) => { setUsername(event.target.value) }} required />
