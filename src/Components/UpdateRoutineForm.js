@@ -1,9 +1,11 @@
 import { deleteRoutine, updateRoutine } from "../api"
 import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import AddActivityToRoutineForm from "./AddActivityToRoutineForm";
 
 
-const UpdateRoutineForm = ( {token, routines, setRoutines, handleRoutines} ) => {
+
+const UpdateRoutineForm = ( {token, routines, setRoutines, handleRoutines, activities} ) => {
     const params = useParams()
     const navigate = useNavigate();
     const {routineId} = params;
@@ -18,7 +20,7 @@ const UpdateRoutineForm = ( {token, routines, setRoutines, handleRoutines} ) => 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await updateRoutine(token, routineId, routineToUpdate.name, routineToUpdate.goal)
+            await updateRoutine(token, routineId, routineToUpdate.name, routineToUpdate)
             console.log('success?? updated routines: ' , updateRoutine)
             setRoutineUpdate(updateRoutine)
             await handleRoutines();
@@ -50,6 +52,7 @@ const UpdateRoutineForm = ( {token, routines, setRoutines, handleRoutines} ) => 
                 <input placeholder="goal" onChange={(event) => {setRoutineUpdate({...routineUpdate, goal: event.target.value})}}required />
                 <button>Update</button>
             </form>
+            <AddActivityToRoutineForm routineId={routineId} token={token} handleRoutines={handleRoutines} activities={activities}/>
         </div>
     )
 }

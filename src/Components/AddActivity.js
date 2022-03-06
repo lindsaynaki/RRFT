@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { addActivity } from '../api'
 import { useNavigate } from 'react-router-dom';
 import './Add.css'
+import { toast } from "react-toastify"
 
 const AddActivity = ({ token, activities, setActivities }) => {
 	const navigate = useNavigate();

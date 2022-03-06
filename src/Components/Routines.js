@@ -2,6 +2,7 @@ import { Navigate, useNavigate } from "react-router"
 import { deleteRoutine } from "../api"
 import UpdateRoutineForm  from "./UpdateRoutineForm"
 import "./Routines.css"
+import { toast } from "react-toastify"
 
 const Routines = ({token, user, routines, setRoutines, activities, setActivities, handleRoutines}) => {
 	const navigate = useNavigate();
@@ -13,6 +14,7 @@ const Routines = ({token, user, routines, setRoutines, activities, setActivities
 			if (deletedRoutine) {
 				const updatedRoutines = routines.filter(routine => routine.id !== routineIdToDelete)
 				setRoutines(updatedRoutines)
+				toast("Your routine has been deleted!")
 			}
 		} catch(error) {
 			console.log(error.response.data.message)
@@ -43,6 +45,7 @@ const Routines = ({token, user, routines, setRoutines, activities, setActivities
 										<p>description: {description}</p>
 										<p>count: {count}</p>
 										<p>duration: {duration}</p>
+										{<button>Delete</button>}
 									</div>
 								)
 							})}

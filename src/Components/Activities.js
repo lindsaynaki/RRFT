@@ -29,14 +29,13 @@ const Activities = ({ token, activities, setActivities }) => {
                     <tr>
                         <th>Name</th>
                         <th>Description</th>
-                        <th></th>
                     </tr>
             {activities.map((activity) => {
                 const { name, description} = activity
                 return (
                     <tr key={activity.id}>
-                        <td>name: {name}</td>
-                        <td>descripiton: {description}</td>
+                        <td>{name}</td>
+                        <td>{description}</td>
                     </tr>
                 )
             })}

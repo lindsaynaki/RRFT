@@ -64,22 +64,20 @@ export const getUser = async(token) => {
     }
 }
 
-// export const addActivity = async (token, name, description) => {
-//     try{
-//         const { data } = await axios.post(`${BASE_URL}/activities`, 
-//         {
-//             headers: {
-//                'Authorization': `Bearer ${token}`
-//         },
-//             body: { name, 
-//             description}
-//         })
-//         console.log('data: ', data)
-//         return data
-//     } catch(error) {
-//         throw error;
-//     }
-// }
+export const addActivity = async (token, name, description) => {
+    try{
+        const { data } = await axios.post(`${BASE_URL}/activities`, { name, description }, 
+        {
+            headers: {
+               'Authorization': `Bearer ${token}`
+            }
+        })
+        console.log('data: ', data)
+        return data
+    } catch(error) {
+        throw error;
+    }
+}
 
 export const deleteActivity = async(activityId, token) => {
     try {
@@ -125,19 +123,33 @@ export const deleteRoutine = async (routineId, token) => {
 	}
 };
 
-// export const addRoutine = async (token, id, isPublic, routineName, goal) => {
+
+export const deleteActivityFromRoutine = async (activityId, token) => {
+	try {
+		const response = await fetch(`${BASE_URL}/activities/${activityId}`, {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${token}`,
+			}
+    });
+		const routine = await response.json();
+		console.log('DELETED routine: ', routine);
+		return routine;
+	} catch (error) {
+		throw error;
+	}
+};
+
+
+// export const addRoutine = async (token, routineToAdd) => {
 //     try{ 
-//         const data = await axios.post(`${BASE_URL}/routines`, 
+//         const data = await axios.post(`${BASE_URL}/routines`, {routineToAdd},
 //             {
 //                headers: {
 //                     'Authorization': `Bearer ${token}`
 //                 } 
-//             },
-//                { 
-//                 id,
-//                 isPublic,
-//                 routineName,
-//                 goal}
+//             }
 //             )
 
 //         console.log('data: ', data)
@@ -165,26 +177,26 @@ export const addRoutine = async (token, routineToAdd) => {
 	}
 };
 
-  export const addActivity = async (token, name, description) => {
-    try {
-      const response = await fetch(`${BASE_URL}/activities`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
-        },
-        body: JSON.stringify({
-          name,
-          description
-        }),
-      });
-      const activities = await response.json();
-      console.log('activities: ', activities);
-      return activities;
-    } catch (error) {
-      throw error;
-    }
-  };
+//   export const addActivity = async (token, name, description) => {
+//     try {
+//       const response = await fetch(`${BASE_URL}/activities`, {
+//         method: 'POST',
+//         headers: {
+//           'Content-Type': 'application/json',
+//           'Authorization': `Bearer ${token}`,
+//         },
+//         body: JSON.stringify({
+//           name,
+//           description
+//         }),
+//       });
+//       const activities = await response.json();
+//       console.log('activities: ', activities);
+//       return activities;
+//     } catch (error) {
+//       throw error;
+//     }
+//   };
 
   export const updateRoutine = async (token, routineId, name, goal) => {
     try {
@@ -208,3 +220,15 @@ export const addRoutine = async (token, routineToAdd) => {
       }
   }
 
+  export const addActivityToRoutine = async (routineId, activityId, count, duration, token) => {
+	try {
+		const { data } = await axios.post(`${BASE_URL}/routines/${routineId}/activities`, {activityId,  count, duration}, {
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		})
+		return data;
+	} catch (error) {
+		console.error(error)
+	}
+}

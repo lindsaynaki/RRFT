@@ -107,12 +107,13 @@ function App() {
           user={user}
           routines={routines}
           setRoutines={setRoutines}
+          activities={activities}
           handleRoutines={handleRoutines}
         />} />
 
       </Routes>
-      {/* <ToastContainer
-            position="top-right"
+      <ToastContainer
+            position="bottom-center"
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
@@ -121,7 +122,7 @@ function App() {
             pauseOnFocusLoss
             draggable
             pauseOnHover
-        /> */}
+        />
     </div>
   );
 }

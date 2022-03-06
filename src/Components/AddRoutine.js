@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { addRoutine  } from '../api'
 import { useNavigate } from 'react-router-dom';
 import './Add.css'
+import { toast } from "react-toastify"
+
 
 const AddRoutine = ({token, handleRoutines}) => {
 	const blankRoutine = {
@@ -20,7 +22,8 @@ const AddRoutine = ({token, handleRoutines}) => {
 				console.log('added routine: ', addRoutine)
                 await handleRoutines();
                 navigate('/routines')
-            } catch(error) {
+				toast('New routine added!')
+			} catch(error) {
                 console.dir(error)
             }
     }
