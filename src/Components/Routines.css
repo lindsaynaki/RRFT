@@ -1,4 +1,6 @@
-
+p {
+  padding: 5px;
+}
    
 .routines {
   margin: 0;
@@ -101,4 +103,13 @@ input {
 
 svg:hover {
   color: red
+}
+
+svg {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.fa-edit:hover {
+  color: deepskyblue;
 }

@@ -24,7 +24,7 @@ const MyRoutines = ({ token, user, routines }) => {
 					</div>
 					<div className="activities">
 						<h3>Activities</h3>
-						{activities && activities.map(({ name, description, count, duration, id }) => {
+						  {activities.map(({ name, description, count, duration, id }) => {
 							return (
 								<div key={id}>
 									<p>name: {name}</p>

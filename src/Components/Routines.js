@@ -3,7 +3,7 @@ import { deleteRoutine } from "../api"
 import UpdateRoutineForm  from "./UpdateRoutineForm"
 import "./Routines.css"
 import { toast } from "react-toastify"
-import { FaTrashAlt } from 'react-icons/fa'
+import { FaTrashAlt, FaRegEdit } from 'react-icons/fa'
 
 const Routines = ({token, user, routines, setRoutines, activities, setActivities, handleRoutines}) => {
 	const navigate = useNavigate();
@@ -33,9 +33,7 @@ const Routines = ({token, user, routines, setRoutines, activities, setActivities
 						<p>Name: {name}</p>
 						<p>Goal: {goal}</p>
 
-						{creatorId === user.id && <button onClick={() => navigate(`/routines/${id}/update`)}>Update Routine</button>}
-
-						{!activities ? (<p>add activities</p>) : 
+						{activities &&
 							<div className="activities">
 								<h3>Activities</h3>
 								<div className="table-wrapper"> 
@@ -63,9 +61,9 @@ const Routines = ({token, user, routines, setRoutines, activities, setActivities
 								</table>
 							</div>
 						</div>}
-						<h3>Created By</h3>
-						{creatorName}
-						{creatorId === user.id && <button className="delete-button" onClick={() => handleDelete(id)}>Delete Routine</button>}
+						<p>Created By {creatorName}</p>
+						{creatorId === user.id && <FaRegEdit role="button" className="fa-edit" onClick={() => navigate(`/routines/${id}/update`)} />}
+						{creatorId === user.id && <FaTrashAlt role="button" className="delete-button" onClick={() => handleDelete(id)} />}
 
 					</div>
 				);
