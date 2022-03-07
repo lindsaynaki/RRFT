@@ -5,13 +5,14 @@ import 'react-toastify/dist/ReactToastify.css';
 import { toast } from "react-toastify";
 
 
-const AddActivityToRoutineForm = ({activities, token, handleRoutines}) => {
+const AddActivityToRoutineForm = ({activities, routines, token, handleRoutines}) => {
 	const params = useParams();
 	const {routineId} = params;
 	const navigate = useNavigate();
 	const [activityId, setActivityId] = useState(0);
 	const [count, setCount] = useState(0);
 	const [duration, setDuration] = useState(0);
+
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -26,18 +27,35 @@ const AddActivityToRoutineForm = ({activities, token, handleRoutines}) => {
 			console.dir(e);
 		}
 	}
+        const routineToEdit = routines.find((routine) => {
+          return routine.id === routineId * 1;
+        });
+		console.log('routine add activity', routineToEdit)
 
 	// useEffect(() => {
     //     const routineToEdit = routines.find((routine) => {
     //       return routine.id === routineId * 1;
     //     });
-    //     setRoutineUpdate(routineToEdit);
     //   }, [routines]);
 
 
 	return (
 		<form onSubmit={handleSubmit}>
 			<h2>Add an activity to this routine</h2>
+			{/* {routines.find((routine) => {
+				return routine.id  === routineId * 1
+			})} */}
+			{/* {routines.map((routine) => {
+				const {name, goal, activities } = routine
+				return (
+					<div>
+						<h3>Routine</h3>
+						<p>Name: {name}</p>
+						<p>Goal: {goal}</p>
+					</div>
+
+				)
+			})} */}
 			<label>Activity</label>
 			<select value={activityId} onChange={(e) => {
 				setActivityId(e.target.value)	

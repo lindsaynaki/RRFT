@@ -1,7 +1,7 @@
-import { Navigate, useNavigate } from "react-router"
+import { useNavigate } from "react-router"
 import { deleteRoutine } from "../api"
 import { useEffect } from "react"
-import UpdateRoutineForm from "./UpdateRoutineForm"
+import { Link } from 'react-router-dom';
 import "./Routines.css"
 import { toast } from "react-toastify"
 import { FaTrashAlt, FaRegEdit, FaPlus } from 'react-icons/fa'
@@ -31,6 +31,7 @@ const Routines = ({ token, user, routines, setRoutines, activities, setActivitie
 	return <>
 		<div className="routines">
 			<h1>Routines</h1>
+			{token && <Link to='/routines/add' className="add-activity-btn">Add Routine</Link>}
 			{routines.map((routine) => {
 				const { id, creatorId, creatorName, name, goal, activities } = routine
 				return (
