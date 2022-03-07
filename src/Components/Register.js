@@ -3,22 +3,22 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'
 import './LoginRegister.css'
 
-const Register = ({token, setToken}) => {
+const Register = ({ token, setToken }) => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [ errMsg, setErrMsg ] = useState('')
+    const [errMsg, setErrMsg] = useState('')
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-        const newToken = await register(username, password);
+            const newToken = await register(username, password);
             setToken(newToken)
             navigate('/')
-        } catch(error) {
-            console.log(error.response.data.message)
+        } catch (error) {
             setErrMsg(error.response.data.message)
-    }}
+        }
+    }
 
     return (
         <div>
@@ -34,4 +34,4 @@ const Register = ({token, setToken}) => {
     )
 }
 
-export default Register; 
+export default Register;

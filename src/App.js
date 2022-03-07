@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom'
-// import { Home, Routines, Activities, Login, Register, AddActivity, AddRoutine, MyRoutines } from './Components'
 import { Home, AddActivity, Login, Register, Routines, AddRoutine, Activities, MyRoutines, UpdateRoutineForm, AddActivityToRoutineForm } from './Components';
 import { getUser, fetchRoutines, fetchActivities } from './api';
 import { ToastContainer } from 'react-toastify';
@@ -58,7 +57,7 @@ function App() {
     <div className="App">
       <header>
         <nav>
-        <Link to='/' className="main-title navbar-item">Fitness Trac.kr</Link>
+          <Link to='/' className="main-title navbar-item">Fitness Trac.kr</Link>
           <Link to='/' className="navbar-item">Home</Link>
           {token && <Link to='/myroutines' className="navbar-item">My Routines</Link>}
           <Link to='/routines' className="navbar-item">Routines</Link>
@@ -110,7 +109,7 @@ function App() {
           activities={activities}
           handleRoutines={handleRoutines}
         />} />
-                <Route path='/routines/:routineId/addactivity' element={<AddActivityToRoutineForm
+        <Route path='/routines/:routineId/addactivity' element={<AddActivityToRoutineForm
           token={token}
           user={user}
           routines={routines}
@@ -121,16 +120,16 @@ function App() {
 
       </Routes>
       <ToastContainer
-            position="bottom-center"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-        />
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }

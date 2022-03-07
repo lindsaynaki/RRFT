@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { addActivityToRoutine } from "../api";
 import {useParams, useNavigate} from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
@@ -32,32 +32,11 @@ const AddActivityToRoutineForm = ({activities, routines, token, handleRoutines})
         });
 		console.log('routine add activity', routineToEdit)
 
-	// useEffect(() => {
-    //     const routineToEdit = routines.find((routine) => {
-    //       return routine.id === routineId * 1;
-    //     });
-    //   }, [routines]);
-
 
 	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} className="login-signup border-1px">
 			<h2>Add an activity to this routine</h2>
-			{/* {routines.find((routine) => {
-				return routine.id  === routineId * 1
-			})} */}
-			{/* {routines.map((routine) => {
-				const {name, goal, activities } = routine
-				return (
-					<div>
-						<h3>Routine</h3>
-						<p>Name: {name}</p>
-						<p>Goal: {goal}</p>
-					</div>
-
-				)
-			})} */}
-			<label>Activity</label>
-			<select value={activityId} onChange={(e) => {
+			<select className="select-activity" value={activityId} onChange={(e) => {
 				setActivityId(e.target.value)	
 			}}>
 				{activities.map((activity) => {
@@ -67,12 +46,13 @@ const AddActivityToRoutineForm = ({activities, routines, token, handleRoutines})
 				})}
 			</select>
 			<label>Count</label>
-			<input value={count} onChange={(e) => setCount(e.target.value)} type="number" />
+			<input className="login-signup-input" value={count} onChange={(e) => setCount(e.target.value)} type="number" />
 			<label>Duration</label>
-			<input value={duration} onChange={(e) => setDuration(e.target.value)} type="number" />
-			{<button type="submit">Submit</button>}
+			<input className="login-signup-input" value={duration} onChange={(e) => setDuration(e.target.value)} type="number" />
+			{<button  className="submit-activity-btn"  type="submit">Submit</button>}
 		</form>
 	)
 }
 
 export default AddActivityToRoutineForm;
+

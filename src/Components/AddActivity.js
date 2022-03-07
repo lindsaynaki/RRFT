@@ -18,14 +18,15 @@ const AddActivity = ({ token, activities, setActivities }) => {
 			navigate('/activities')
 			toast('new activity added!')
 		} catch (error) {
-			//make a error handler that handles errors
+			console.error(error)
 		}
 	}
 
 	return (
 		<div className="login-signup">
 			<h1>Add Activity</h1>
-			<form onSubmit={handleSubmit} className="login-signup">            <input className="login-signup-input" value={name} placeholder="name" onChange={(event) => { setName(event.target.value) }} required />
+			<form onSubmit={handleSubmit} className="login-signup">
+				<input className="login-signup-input" value={name} placeholder="name" onChange={(event) => { setName(event.target.value) }} required />
 				<input className="login-signup-input" placeholder="description" value={description} onChange={(event) => { setDescription(event.target.value) }} required />
 				<button className="submit-activity-btn">Add Activity</button>
 			</form>

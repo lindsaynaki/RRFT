@@ -41,8 +41,8 @@ h3 {
     padding: 10px;
 }
 
-select {
+.select-activity {
     padding: 3px;
-    margin: 5px;
+    margin: 30px;
     width: 30vw;
 }

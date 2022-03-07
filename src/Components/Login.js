@@ -6,25 +6,23 @@ import 'react-toastify/dist/ReactToastify.css';
 import './LoginRegister.css'
 
 const Login = ({ setToken }) => {
-    const [ username, setUsername ] = useState('');
-    const [ password, setPassword] = useState('');
-    const [ errMsg, setErrMsg ] = useState('')
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [errMsg, setErrMsg] = useState('')
     const navigate = useNavigate();
 
-    const handleSubmit = async(event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
-            try {
-                const token = await login(username, password)
-                localStorage.setItem('token', token)
-                setToken(token)
-                navigate('/')
-                toast("You are loged in!");
-            } catch(error) {
-                toast.error(error.response.data.message);
-                console.log(error.response.data.message)
-                console.dir(error)
-                setErrMsg(error.response.data.message)
-            }
+        try {
+            const token = await login(username, password)
+            localStorage.setItem('token', token)
+            setToken(token)
+            navigate('/')
+            toast("You are loged in!");
+        } catch (error) {
+            toast.error(error.response.data.message);
+            setErrMsg(error.response.data.message)
+        }
     }
 
     return (
@@ -39,4 +37,4 @@ const Login = ({ setToken }) => {
     )
 }
 
-export default Login; 
+export default Login;

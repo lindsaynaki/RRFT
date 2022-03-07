@@ -12,20 +12,33 @@ p {
   text-align: center;
 }
 
+.routine-header {
+  margin: 30px;
+}
+
 .eachRoutine {
   border: 1px solid black;
-  margin: 10px;
-  background-color: lightgray;
+  margin: 25px;
+  padding: 15px;
+  background-color: rgba(201, 233, 243, 0.329);
+}
+
+div.activities {
+  background-color: white;
+}
+
+.tableheaders {
+  background-color: white;
 }
 
 .activities {
-margin: 10px;
-background-color: rgba(217, 210, 241, 0.514);
+  margin: 10px;
+  background-color: rgbargba(201, 233, 243, 0.329);
 }
 
 .delete-btn {
-background-color: rgba(236, 100, 100, 0.336);
-border: 1px solid black;
+  background-color: rgba(236, 100, 100, 0.336);
+  border: 1px solid black;
 }
 .routines-title {
   margin: 3vh;

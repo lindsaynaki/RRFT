@@ -2,11 +2,12 @@ import { useNavigate } from "react-router"
 import { deleteRoutine } from "../api"
 import { useEffect } from "react"
 import { Link } from 'react-router-dom';
+
 import "./Routines.css"
 import { toast } from "react-toastify"
 import { FaTrashAlt, FaRegEdit, FaPlus } from 'react-icons/fa'
 
-const Routines = ({ token, user, routines, setRoutines, activities, setActivities, handleRoutines }) => {
+const Routines = ({ token, user, routines, setRoutines, handleRoutines }) => {
 	const navigate = useNavigate();
 
 	const handleDelete = async (routineIdToDelete) => {
@@ -23,14 +24,13 @@ const Routines = ({ token, user, routines, setRoutines, activities, setActivitie
 		}
 	}
 
-
 	useEffect(() => {
 		handleRoutines();
 	}, [])
 
 	return <>
 		<div className="routines">
-			<h1>Routines</h1>
+			<h1 className="routine-header">Routines</h1>
 			{token && <Link to='/routines/add' className="add-activity-btn">Add Routine</Link>}
 			{routines.map((routine) => {
 				const { id, creatorId, creatorName, name, goal, activities } = routine
@@ -42,10 +42,10 @@ const Routines = ({ token, user, routines, setRoutines, activities, setActivitie
 
 						{activities &&
 							<div className="activities">
-								<h3>Activities</h3>
+								<h3 className="activities-h">Activities</h3>
 								<div className="table-wrapper">
 									<table className="activities-table">
-										<tr>
+										<tr className="tableheaders">
 											<th>Name</th>
 											<th>Description</th>
 											<th>count</th>
