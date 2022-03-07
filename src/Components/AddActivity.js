@@ -16,6 +16,7 @@ const AddActivity = ({ token, activities, setActivities }) => {
 			console.log('newActivity: ', newActivity)
 			setActivities([...activities, newActivity])
 			navigate('/activities')
+			toast('new activity added!')
 		} catch (error) {
 			//make a error handler that handles errors
 		}

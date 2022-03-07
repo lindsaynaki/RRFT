@@ -227,8 +227,10 @@ export const addRoutine = async (token, routineToAdd) => {
 				Authorization: `Bearer ${token}`
 			}
 		})
+        console.log('routine id', routineId)
+        console.log('added activity', data)
 		return data;
 	} catch (error) {
-		console.error(error)
-	}
+        throw error;
+    }
 }

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom'
 // import { Home, Routines, Activities, Login, Register, AddActivity, AddRoutine, MyRoutines } from './Components'
-import { Home, AddActivity, Login, Register, Routines, AddRoutine, Activities, MyRoutines, UpdateRoutineForm } from './Components';
+import { Home, AddActivity, Login, Register, Routines, AddRoutine, Activities, MyRoutines, UpdateRoutineForm, AddActivityToRoutineForm } from './Components';
 import { getUser, fetchRoutines, fetchActivities } from './api';
 import { ToastContainer } from 'react-toastify';
 import './App.css'
@@ -103,6 +103,14 @@ function App() {
           handleRoutines={handleRoutines}
         />} />
         <Route path='/routines/:routineId/update' element={<UpdateRoutineForm
+          token={token}
+          user={user}
+          routines={routines}
+          setRoutines={setRoutines}
+          activities={activities}
+          handleRoutines={handleRoutines}
+        />} />
+                <Route path='/routines/:routineId/addactivity' element={<AddActivityToRoutineForm
           token={token}
           user={user}
           routines={routines}

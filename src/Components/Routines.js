@@ -1,11 +1,12 @@
 import { Navigate, useNavigate } from "react-router"
 import { deleteRoutine } from "../api"
-import UpdateRoutineForm  from "./UpdateRoutineForm"
+import { useEffect } from "react"
+import UpdateRoutineForm from "./UpdateRoutineForm"
 import "./Routines.css"
 import { toast } from "react-toastify"
-import { FaTrashAlt, FaRegEdit } from 'react-icons/fa'
+import { FaTrashAlt, FaRegEdit, FaPlus } from 'react-icons/fa'
 
-const Routines = ({token, user, routines, setRoutines, activities, setActivities, handleRoutines}) => {
+const Routines = ({ token, user, routines, setRoutines, activities, setActivities, handleRoutines }) => {
 	const navigate = useNavigate();
 
 	const handleDelete = async (routineIdToDelete) => {
@@ -17,10 +18,15 @@ const Routines = ({token, user, routines, setRoutines, activities, setActivities
 				setRoutines(updatedRoutines)
 				toast("Your routine has been deleted!")
 			}
-		} catch(error) {
+		} catch (error) {
 			console.log(error.response.data.message)
 		}
 	}
+
+
+	useEffect(() => {
+		handleRoutines();
+	}, [])
 
 	return <>
 		<div className="routines">
@@ -36,34 +42,34 @@ const Routines = ({token, user, routines, setRoutines, activities, setActivities
 						{activities &&
 							<div className="activities">
 								<h3>Activities</h3>
-								<div className="table-wrapper"> 
+								<div className="table-wrapper">
 									<table className="activities-table">
 										<tr>
 											<th>Name</th>
 											<th>Description</th>
 											<th>count</th>
 											<th>duration</th>
-											<th>delete</th>
+											<th><FaPlus className="add-svg" role="button" onClick={() => navigate(`/routines/${id}/addactivity`)} /></th>
 										</tr>
-							{activities.map(({ name, description, count, duration, id }) => {
-								return (
-									<tr key={id}>
-										<td>{name}</td>
-										<td>{description}</td>
-										<td>{count}</td>
-										<td>{duration}</td>
-										{<td><FaTrashAlt role="button"
-										tabIndex="0"
-										/></td>}
-									</tr>
-								)
-							})}
-								</table>
-							</div>
-						</div>}
+										{activities.map(({ name, description, count, duration, id }) => {
+											return (
+												<tr key={id}>
+													<td>{name}</td>
+													<td>{description}</td>
+													<td>{count}</td>
+													<td>{duration}</td>
+													{<td><FaTrashAlt role="button"
+														tabIndex="0"
+													/></td>}
+												</tr>
+											)
+										})}
+									</table>
+								</div>
+							</div>}
 						<p>Created By {creatorName}</p>
 						{creatorId === user.id && <FaRegEdit role="button" className="fa-edit" onClick={() => navigate(`/routines/${id}/update`)} />}
-						{creatorId === user.id && <FaTrashAlt role="button" className="delete-button" onClick={() => handleDelete(id)} />}
+						{creatorId === user?.id && <FaTrashAlt role="button" className="delete-button" onClick={() => handleDelete(id)} />}
 
 					</div>
 				);

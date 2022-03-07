@@ -1,8 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { addActivityToRoutine } from "../api";
-import Routines from "./Routines";
+import {useParams, useNavigate} from 'react-router-dom'
+import 'react-toastify/dist/ReactToastify.css';
+import { toast } from "react-toastify";
 
-const AddActivityToRoutineForm = ({activities, token, routineId, handleRoutines}) => {
+
+const AddActivityToRoutineForm = ({activities, token, handleRoutines}) => {
+	const params = useParams();
+	const {routineId} = params;
+	const navigate = useNavigate();
 	const [activityId, setActivityId] = useState(0);
 	const [count, setCount] = useState(0);
 	const [duration, setDuration] = useState(0);
@@ -10,12 +16,24 @@ const AddActivityToRoutineForm = ({activities, token, routineId, handleRoutines}
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			console.log('clicked')
+			console.log('routineId: ', routineId)
 			await addActivityToRoutine(routineId, activityId * 1, count * 1, duration * 1, token);
 			await handleRoutines();
+			navigate('/routines')
+			toast('your activity has been added!')
 		} catch (e) {
-			console.error(e);
+			console.dir(e);
 		}
 	}
+
+	// useEffect(() => {
+    //     const routineToEdit = routines.find((routine) => {
+    //       return routine.id === routineId * 1;
+    //     });
+    //     setRoutineUpdate(routineToEdit);
+    //   }, [routines]);
+
 
 	return (
 		<form onSubmit={handleSubmit}>

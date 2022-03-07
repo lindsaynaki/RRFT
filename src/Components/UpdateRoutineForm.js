@@ -52,7 +52,7 @@ const UpdateRoutineForm = ( {token, routines, setRoutines, handleRoutines, activ
                 <input placeholder="goal" onChange={(event) => {setRoutineUpdate({...routineUpdate, goal: event.target.value})}}required />
                 <button>Update</button>
             </form>
-            <AddActivityToRoutineForm routineId={routineId} token={token} handleRoutines={handleRoutines} activities={activities}/>
+            {/* <AddActivityToRoutineForm routineId={routineId} token={token} handleRoutines={handleRoutines} activities={activities}/> */}
         </div>
     )
 }
